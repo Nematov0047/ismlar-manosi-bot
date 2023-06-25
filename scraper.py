@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
+import time
 
 class Scraper():
     def get_info(self, name):
+        start_time = time.time()
         name = str(name).lower().replace("g'",'g‘')
         html = requests.get('http://ismlar.com/name/' + name).text
         soup = BeautifulSoup(html, 'lxml')  
@@ -27,7 +29,7 @@ class Scraper():
             views = full.find_all('span')[-1].text.strip()
         except:
             views = False
-
-        return {'title':title, 'meaning':meaning, 'types':type, 'category':category, 'views':views}
+        duration = round(time.time()-start_time, 2)
+        return {'title':title, 'meaning':meaning, 'types':type, 'category':category, 'views':views, 'duration':duration}
     
 scraper = Scraper()

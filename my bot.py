@@ -2,7 +2,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from scraper import scraper
 
 
-API_token = "Token"
+API_token = "token"
 
 bot = Bot(token = API_token)
 dp = Dispatcher(bot)
@@ -20,8 +20,8 @@ async def main_work(message = types.message.ParseMode.HTML):
             resp += 'Shakllari: <i>' + str(dict['types']) + '</i>\n\n'
         if dict['category']:
             resp += 'Ism Turi: <b>' + str(dict['category']) + '</b>\n\n'
+        resp += "izlashga ketgan vaqt: "+str(dict['duration'])+"soniya\n\n"
         resp += '👁: <b>' + str(dict['views']) + '</b>'
-
         await message.answer(resp , parse_mode = 'HTML')
     else:
         await message.reply('Afsuski bizda bu ism haqida ma\'lumot topilmadi.')
