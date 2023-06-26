@@ -13,7 +13,7 @@ class Db():
         conn.close()
         try:
             duration = round(time.time()-start_time, 4)
-            return {'title':result[0], 'meaning':result[2], 'types':result[3], 'category':result[4], 'views':result[5], 'duration':duration}
+            return {'title':result[1], 'meaning':result[2], 'types':result[3], 'category':result[4], 'views':result[5], 'duration':duration}
         except:
             return False
 
